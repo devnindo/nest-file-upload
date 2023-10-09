@@ -1,10 +1,8 @@
 import { Controller, Get } from '@nestjs/common'
 import { NestFileUploadService } from './nest-file-upload.service'
-import { ConfigService } from '@nestjs/config'
+import { UPLOAD_BLOB_PATH } from './utils'
 
-const blobPath = new ConfigService().get<string>('BLOB_PATH', 'blob')
-
-@Controller(blobPath)
+@Controller(UPLOAD_BLOB_PATH)
 export class NestFileUploadController {
   constructor(private readonly appService: NestFileUploadService) { }
 

@@ -1,3 +1,7 @@
+import { ConfigService } from '@nestjs/config'
+
+const configService = new ConfigService()
+
 export const generateTimestampString = (): string => {
     const now = new Date()
     const year = now.getFullYear()
@@ -43,3 +47,7 @@ export const generateRandomFilename = () => {
 export const generatePath = (pathList: string[]): string => {
     return `${pathList.join('/')}/`
 }
+
+export const UPLOAD_ALLOWED_EXTENSION = (configService.get('UPLOAD_ALLOWED_EXTENSION') || '').split(',')
+
+export const UPLOAD_BLOB_PATH = new ConfigService().get<string>('UPLOAD_BLOB_PATH', 'blob')
